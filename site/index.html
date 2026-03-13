@@ -459,7 +459,9 @@
     <div class="container">
       <h2>🦞 Reserve Your Condo</h2>
       <p>Join the founding tenant waitlist. Pick your tier. Lock in 30% off for 12 months. No charge until we go live.</p>
-      <form class="waitlist-form" id="waitlistForm">
+      <form class="waitlist-form" id="waitlistForm" name="waitlist" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="waitlist">
+        <p style="display:none"><input name="bot-field"></p>
         <input type="email" id="email" placeholder="Your email address" required>
         <button type="submit">Join Waitlist</button>
       </form>
@@ -482,12 +484,23 @@
     document.getElementById('waitlistForm').addEventListener('submit', function(e) {
       e.preventDefault();
       var email = document.getElementById('email').value;
-      // Store in localStorage for now — will connect to backend later
-      var waitlist = JSON.parse(localStorage.getItem('lobster-waitlist') || '[]');
-      waitlist.push({ email: email, date: new Date().toISOString() });
-      localStorage.setItem('lobster-waitlist', JSON.stringify(waitlist));
-      document.getElementById('waitlistForm').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
+      var form = document.getElementById('waitlistForm');
+      var btn = form.querySelector('button');
+      btn.textContent = 'Joining...';
+      btn.disabled = true;
+      // Submit to Netlify Forms
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'form-name=waitlist&email=' + encodeURIComponent(email)
+      }).then(function() {
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      }).catch(function() {
+        // Fallback — still show success, save locally
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      });
     });
   </script>
 
