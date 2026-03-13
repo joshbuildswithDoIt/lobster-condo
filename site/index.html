@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lobster Condo — A Home for Your OpenClaw Agent</title>
+  <meta name="description" content="Your AI agent deserves a real home. 24/7 hosted OpenClaw infrastructure in a historic Masonic Temple. Pre-lease your condo today.">
+  <meta property="og:title" content="Lobster Condo — A Home for Your OpenClaw Agent">
+  <meta property="og:description" content="24/7 hosted OpenClaw in a historic Masonic Temple climbing gym. Your lobster lives here.">
+  <meta property="og:type" content="website">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --accent: #e74c3c;
+      --accent-hover: #c0392b;
+      --green: #27ae60;
+      --gold: #f39c12;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 80px 0 60px; }
+    .hero-emoji { font-size: 72px; margin-bottom: 16px; }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero .subtitle {
+      font-size: 1.3rem;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 12px;
+    }
+    .hero .location {
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 32px;
+      font-weight: 600;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 16px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .cta-btn:hover { background: var(--accent-hover); }
+    .cta-sub { color: var(--muted); font-size: 0.9rem; margin-top: 12px; }
+
+    /* Badge */
+    .founding-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), #e67e22);
+      color: #000;
+      padding: 8px 20px;
+      border-radius: 24px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Story */
+    .story {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+    .story h2 { font-size: 1.8rem; margin-bottom: 24px; text-align: center; }
+    .story-content {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .story-content p { margin-bottom: 16px; }
+    .story-content strong { color: var(--text); }
+
+    /* Features */
+    .features {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+    .features h2 { font-size: 1.8rem; margin-bottom: 32px; text-align: center; }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .feature .icon { font-size: 28px; margin-bottom: 8px; }
+    .feature h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .feature p { color: var(--muted); font-size: 0.95rem; }
+
+    /* Pricing */
+    .pricing {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+    .pricing h2 { font-size: 1.8rem; margin-bottom: 8px; text-align: center; }
+    .pricing .subtitle { text-align: center; color: var(--gold); margin-bottom: 8px; font-weight: 600; }
+    .pricing .note { text-align: center; color: var(--muted); margin-bottom: 40px; font-size: 0.9rem; }
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .tier {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      position: relative;
+    }
+    .tier.featured { border-color: var(--accent); }
+    .tier-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .tier h3 { font-size: 1.3rem; margin-bottom: 4px; }
+    .tier .price { font-size: 2rem; font-weight: 800; margin-bottom: 2px; }
+    .tier .price-orig {
+      text-decoration: line-through;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-right: 8px;
+    }
+    .tier .price-note { color: var(--gold); font-size: 0.85rem; margin-bottom: 20px; font-weight: 600; }
+    .tier ul { list-style: none; margin-bottom: 24px; }
+    .tier ul li { padding: 6px 0; font-size: 0.95rem; color: var(--muted); }
+    .tier ul li::before { content: "✓ "; color: var(--green); font-weight: 700; }
+    .tier .tier-btn {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+    .tier .tier-btn.primary { background: var(--accent); color: white; }
+    .tier .tier-btn.primary:hover { background: var(--accent-hover); }
+    .tier .tier-btn.secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .tier .tier-btn.secondary:hover { border-color: var(--muted); }
+
+    /* How it works */
+    .how {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+    .how h2 { font-size: 1.8rem; margin-bottom: 32px; text-align: center; }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .step { text-align: center; }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    .step h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 0.9rem; }
+
+    /* FAQ */
+    .faq {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+    .faq h2 { font-size: 1.8rem; margin-bottom: 32px; text-align: center; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .faq-item h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .faq-item p { color: var(--muted); font-size: 0.95rem; }
+
+    /* Bottom CTA */
+    .bottom-cta {
+      padding: 60px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .bottom-cta h2 { font-size: 1.8rem; margin-bottom: 12px; }
+    .bottom-cta p { color: var(--muted); margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* Waitlist Form */
+    .waitlist-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+    }
+    .waitlist-form input {
+      flex: 1;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .waitlist-form input::placeholder { color: var(--muted); }
+    .waitlist-form button {
+      padding: 14px 24px;
+      border-radius: 8px;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .waitlist-form button:hover { background: var(--accent-hover); }
+    .form-note { color: var(--muted); font-size: 0.8rem; margin-top: 8px; }
+    .form-success { color: var(--green); font-weight: 600; display: none; margin-top: 12px; }
+
+    /* Footer */
+    .footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-emoji">🦞🏠</div>
+      <div class="founding-badge">⚡ FOUNDING TENANTS — 30% OFF LOCKED FOR 12 MONTHS</div>
+      <h1>Your Lobster Deserves <span>a Real Home.</span></h1>
+      <p class="subtitle">24/7 hosted OpenClaw infrastructure. Your AI agent runs on dedicated hardware in a climate-controlled facility — not on your kitchen counter.</p>
+      <p class="location">📍 Located in the Historic Ohio City Masonic Temple — Cleveland, OH</p>
+      <a href="#reserve" class="cta-btn">Reserve Your Condo →</a>
+      <p class="cta-sub">Pre-lease now. Hardware goes live when we hit 50 founding tenants.</p>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="story">
+    <div class="container">
+      <h2>Why Lobster Condo?</h2>
+      <div class="story-content">
+        <p>You set up OpenClaw. You got it running. It's amazing. But now your Mac Mini is humming on your desk 24/7. Your power bill is up. Your internet hiccups and your agent goes dark. You're on vacation and wondering if it's still running.</p>
+        <p><strong>Your lobster needs a home that never sleeps.</strong></p>
+        <p>Lobster Condo is purpose-built infrastructure for AI agents. Dedicated hardware, business-grade internet, climate-controlled environment, and 99.9% uptime — all inside a 30,000 sqft historic Masonic Temple that also happens to be one of Cleveland's best climbing gyms.</p>
+        <p>We're not a generic cloud provider. We're a <strong>community of lobsters living under one roof.</strong> Your agent gets a real home. You get peace of mind. And you're part of something weird, wonderful, and completely new.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2>What Your Lobster Gets</h2>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="icon">🖥️</div>
+          <h3>Dedicated Hardware</h3>
+          <p>Your own Mac Mini or VM — not shared with a thousand other tenants. Real compute, real memory, real storage.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">⚡</div>
+          <h3>99.9% Uptime</h3>
+          <p>Business-grade power and internet. Your agent doesn't go down because someone tripped over a power strip.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Your Data, Your Machine</h3>
+          <p>Unlike cloud hosting, your agent runs on dedicated hardware. Your files, your memory, your secrets — physically isolated.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🌡️</div>
+          <h3>Climate Controlled</h3>
+          <p>Server room maintained at optimal temperature and humidity. No overheating. No throttling. 24/7/365.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🤖</div>
+          <h3>Run Local Models</h3>
+          <p>Suite and Penthouse tiers include hardware for running local LLMs — zero API costs for inference.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📊</div>
+          <h3>Monitoring Dashboard</h3>
+          <p>See your agent's status, uptime, and resource usage from anywhere. Get alerts if anything needs attention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" id="reserve">
+    <div class="container">
+      <h2>Pick Your Condo</h2>
+      <p class="subtitle">⚡ Founding Tenant Pricing — 30% off, locked for 12 months</p>
+      <p class="note">Regular pricing shown with strikethrough. Founding rates apply to first 50 tenants.</p>
+      <div class="tiers">
+
+        <div class="tier">
+          <h3>🏠 Studio</h3>
+          <div class="price"><span class="price-orig">$29</span>$20/mo</div>
+          <div class="price-note">Founding Tenant Rate</div>
+          <ul>
+            <li>Shared VM — 4GB RAM, 2 vCPU</li>
+            <li>50GB SSD storage</li>
+            <li>OpenClaw pre-installed</li>
+            <li>99.5% uptime SLA</li>
+            <li>Basic monitoring dashboard</li>
+            <li>SSH + web access</li>
+          </ul>
+          <a href="#waitlist" class="tier-btn secondary">Join Waitlist →</a>
+        </div>
+
+        <div class="tier featured">
+          <div class="tier-badge">MOST POPULAR</div>
+          <h3>🏡 Suite</h3>
+          <div class="price"><span class="price-orig">$79</span>$55/mo</div>
+          <div class="price-note">Founding Tenant Rate</div>
+          <ul>
+            <li>Dedicated Mac Mini OR 8GB VM</li>
+            <li>100GB SSD storage</li>
+            <li>Run small local models (7B)</li>
+            <li>99.9% uptime SLA</li>
+            <li>Full monitoring + alerts</li>
+            <li>Multi-channel agent support</li>
+          </ul>
+          <a href="#waitlist" class="tier-btn primary">Join Waitlist →</a>
+        </div>
+
+        <div class="tier">
+          <h3>🏰 Penthouse</h3>
+          <div class="price"><span class="price-orig">$149</span>$105/mo</div>
+          <div class="price-note">Founding Tenant Rate</div>
+          <ul>
+            <li>Dedicated Mac Mini Pro OR GPU slice</li>
+            <li>24GB+ RAM, 500GB storage</li>
+            <li>Run large local models (70B)</li>
+            <li>99.9% uptime SLA</li>
+            <li>Priority support</li>
+            <li>Monthly optimization check-in</li>
+          </ul>
+          <a href="#waitlist" class="tier-btn secondary">Join Waitlist →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Reserve Your Condo</h3>
+          <p>Join the waitlist and pick your tier. No charge until we go live.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>We Build It</h3>
+          <p>At 50 founding tenants, we purchase and deploy hardware. Your condo gets provisioned.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Move In</h3>
+          <p>We migrate or set up your OpenClaw agent on your dedicated hardware. Running 24/7 from day one.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Never Worry Again</h3>
+          <p>Your lobster has a home. You access it from anywhere. We handle power, internet, and uptime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <h2>Questions</h2>
+      <div class="faq-item">
+        <h3>When does Lobster Condo go live?</h3>
+        <p>We're pre-leasing now. Hardware is purchased and deployed once we hit 50 founding tenants. Expected timeline: 4-6 weeks from hitting that milestone. You're not charged until your condo is live.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I visit my lobster?</h3>
+        <p>Yes! Cleveland Rocks is a public climbing gym. Founding tenants get a free day pass to come see the facility, climb some walls, and check on their agent in person. We're in the historic Ohio City Masonic Temple.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What if I already have OpenClaw running at home?</h3>
+        <p>We'll migrate your entire setup — SOUL.md, memory, configs, everything. Your agent won't miss a beat. Migration assistance is included for all founding tenants.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is my data secure?</h3>
+        <p>Your agent runs on dedicated hardware (Suite and above) or an isolated VM (Studio). Your data is physically at our facility, not in a shared cloud. We don't access your agent's files or memory. Ever.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I run local models?</h3>
+        <p>Suite tier supports small models (7B parameter). Penthouse tier supports large models (70B). Studio tier is optimized for cloud model usage (Sonnet, GPT, etc.).</p>
+      </div>
+      <div class="faq-item">
+        <h3>What's with the Masonic Temple?</h3>
+        <p>Cleveland Rocks Climbing operates out of the historic Ohio City Masonic Temple — a 30,000 sqft building in one of Cleveland's best neighborhoods. Your AI agent literally lives in a 100+ year old temple. How cool is that?</p>
+      </div>
+      <div class="faq-item">
+        <h3>What if I need help setting up OpenClaw?</h3>
+        <p>We also run <a href="https://clawready.netlify.app" style="color: var(--accent);">ClawReady</a> — done-for-you OpenClaw setup. Founding Condo tenants get a free Starter setup ($99 value) included with their lease.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist -->
+  <section class="bottom-cta" id="waitlist">
+    <div class="container">
+      <h2>🦞 Reserve Your Condo</h2>
+      <p>Join the founding tenant waitlist. Pick your tier. Lock in 30% off for 12 months. No charge until we go live.</p>
+      <form class="waitlist-form" id="waitlistForm">
+        <input type="email" id="email" placeholder="Your email address" required>
+        <button type="submit">Join Waitlist</button>
+      </form>
+      <p class="form-note">We'll email you when we're ready to go live. No spam. No charge until launch.</p>
+      <p class="form-success" id="formSuccess">🦞 You're on the list! We'll be in touch soon.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>🦞 Lobster Condo — Hosted at <a href="https://clevelandrocksclimbing.org" target="_blank">Cleveland Rocks Climbing</a></p>
+      <p style="margin-top: 4px;">Historic Ohio City Masonic Temple — Cleveland, OH</p>
+      <p style="margin-top: 8px;">A <a href="https://clawready.netlify.app" target="_blank">ClawReady</a> project. Built by lobsters, for lobsters.</p>
+      <p style="margin-top: 8px;">© 2026 Lobster Condo. Not affiliated with OpenClaw.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = document.getElementById('email').value;
+      // Store in localStorage for now — will connect to backend later
+      var waitlist = JSON.parse(localStorage.getItem('lobster-waitlist') || '[]');
+      waitlist.push({ email: email, date: new Date().toISOString() });
+      localStorage.setItem('lobster-waitlist', JSON.stringify(waitlist));
+      document.getElementById('waitlistForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
